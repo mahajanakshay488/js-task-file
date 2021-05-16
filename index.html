@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>enter number b/w 2 to 99 and click push button to add number</p>
+    <div class="d-flex h-100">
+        <input type="number",  placeholder="enter numbers">
+        <input type="button" value="push" disabled>
+    </div>
+    <br>
+    <div class="d-flex h-100">
+        <button id="show" >show prime numbers array</button><br>
+        your array
+        <p id="xshow"></p>
+        <br>
+        prime number array
+        <p id="yshow"></p>
+    </div>
+
+
+   <script>
+        var num = document.querySelector('input[type = "number"]');
+        var pushBtn = document.querySelector('input[type = "button"]');
+
+        var min = 2, max = 99, x = [], y = [];
+        
+
+        num.addEventListener('input', ()=>{
+            let n = num.value;
+
+            if(2 < n && n < 99){
+                console.log(n);
+                pushBtn.disabled = false;
+            }
+            else if(!n){
+                pushBtn.disabled = true;
+            }
+            else{
+                console.log('number is not valid !');
+                pushBtn.disabled = true;
+            }
+        
+        });
+
+        pushBtn.addEventListener('click', ()=>{
+            let n = num.value;
+            x.push(n);
+            console.log(x);
+        });
+
+        document.querySelector('#show').addEventListener('click', ()=> {
+            x.forEach(v => {
+                var isprime = true;
+                for(i = 2; i< v; i++){
+                    if(v % i == 0){
+                        isprime = false;
+                    }
+                }
+                (isprime) ? y.push(v) : y.push('n');
+            });
+
+            document.querySelector('#xshow').innerHTML = x;
+            document.querySelector('#yshow').innerHTML = y;
+            console.log(x,y);
+        });
+
+   </script>
+</body>
+</html>
